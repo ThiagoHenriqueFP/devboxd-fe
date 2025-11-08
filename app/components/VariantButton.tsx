@@ -1,4 +1,5 @@
-import {tv} from 'tailwind-variants';
+import { ButtonHTMLAttributes } from 'react';
+import {tv, VariantProps} from 'tailwind-variants';
 
 export const variantButton = tv({
     base: 'font-semibold text-white text-sm py-1 px-4 rounded-full active:opacity-80',
@@ -32,7 +33,7 @@ export const variantButton = tv({
             false: ''
         },
     },
-    compundVariants: [
+    compoundVariants: [
         {
             variant: 'solid',
             color: 'primary',
@@ -69,6 +70,16 @@ export const variantButton = tv({
         variant: 'solid',
         size: 'medium',
         radius: 'md',
-        disabled: 'false'
+        disabled: false
     }
 });
+
+export interface ButtonProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
+    VariantProps<typeof variantButton> {
+  asChild?: boolean
+}
+
+export function Button({ asChild, variant, className, ...props }: ButtonProps) {
+  return <button {...props} className={variantButton({ variant, className })} />
+}
