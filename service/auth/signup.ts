@@ -8,11 +8,6 @@ export class SignupService {
   constructor(private readonly axios = api) {}
 
   async perform(params: SignupUseCase.Request) {
-    const response = await this.axios.post<SignupUseCase.Response>(
-      "/auth/signup",
-      params
-    );
-
-    setCookie("access_token", response.data.token, { path: "/" });
+    await this.axios.post<void>("/auth/signup", params);
   }
 }

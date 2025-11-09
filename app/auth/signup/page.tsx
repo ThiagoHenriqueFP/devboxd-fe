@@ -1,10 +1,14 @@
 "use client";
+import { Input } from "@/app/components/Input";
+import { Button } from "@/app/components/VariantButton";
 import { SignupService } from "@/service/auth/signup";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
 export default function Signin() {
+  const router = useRouter();
   const SignupSchema = z
     .object({
       username: z
@@ -21,9 +25,9 @@ export default function Signin() {
         .min(5, "password must have a minimum of five letters")
         .max(32, "username must have at maximum of 32 letters"),
     })
-    .refine((data) => data.password !== data.confirmPassword, {
+    .refine((data) => data.password === data.confirmPassword, {
       path: ["confirmPassword"],
-      message: "Password doesnt match",
+      message: "Password doesn't match",
     });
 
   type signupSchema = z.infer<typeof SignupSchema>;
@@ -41,38 +45,46 @@ export default function Signin() {
       await SignupService.instance.perform({
         email: data.email,
         username: data.username,
-        password: data.password,
+        passwd: data.password,
       });
+
+      setInterval(() => router.push("/auth/signin"), 500);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 
   return (
-    <form>
-      <div className="*:p-4">
+    <form className="flex flex-col items-center">
+      <div className="*:m-4">
         <div>
-          <input type="text" placeholder="Username" {...register("username")} />
+          <Input type="text" placeholder="Username" {...register("username")} />
           <span>{errors.username?.message}</span>
         </div>
         <div>
-          <input type="text" placeholder="Email" {...register("email")} />
+          <Input type="text" placeholder="Email" {...register("email")} />
           <span>{errors.email?.message}</span>
         </div>
         <div>
-          <input type="text" placeholder="Password" {...register("password")} />
+          <Input
+            type="password"
+            placeholder="Password"
+            {...register("password")}
+          />
           <span>{errors.password?.message}</span>
         </div>
         <div>
-          <input
-            type="text"
+          <Input
+            type="password"
             placeholder="Confirm Password"
             {...register("confirmPassword")}
           />
           <span>{errors.confirmPassword?.message}</span>
         </div>
       </div>
-      <button onClick={handleSubmit(handleSignup)}>Register</button>
+      <Button className="mt-4" onClick={handleSubmit(handleSignup)}>
+        Register
+      </Button>
     </form>
   );
 }

@@ -1,10 +1,5 @@
 export type Request = {
   username: string;
-  password: string;
+  passwd: string;
   email: string;
-};
-
-export type Response = {
-  token: string;
-  type: "bearer";
 };
