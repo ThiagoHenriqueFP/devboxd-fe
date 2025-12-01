@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 export const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
   ({ placeholder, className, ...props }, ref) => {
@@ -11,15 +11,17 @@ export const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttribute
             w-full
             text-white 
             text-base
-            bg-gray-800
+            bg-zinc-700
             border-transparent
             rounded-full
             placeholder-gray-400
             transition-all duration-200
             focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+            ${className}
         `}
-        {...props}
-      />
-    )
-  }
-)
+      {...props}
+    />
+  );
+});
+
+Input.displayName = "Input";
