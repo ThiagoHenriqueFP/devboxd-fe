@@ -6,10 +6,9 @@ export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-cyan-900">
       
-      <Button variant="solid" color="primary">Cadastro</Button>
-      <Button variant="ghost" color="secondary">Cadastro</Button>
-      <Button variant="outline" color="success">Cadastro</Button>
-      <Button color="warning">Cadastro</Button>
+      <Button variant="primary">Cadastro</Button>
+      <Button variant="secondary">Cadastro</Button>
+      <Button variant="terciary">Cadastro</Button>
       <input placeholder="Digite aqui"/>
       <Input placeholder="Digite aqui"/>
   
