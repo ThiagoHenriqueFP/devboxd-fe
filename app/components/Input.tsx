@@ -7,13 +7,15 @@ export const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttribute
         ref={ref}
         placeholder={placeholder}
         className={`
-            p-4
+            p-2
             w-full
             text-white 
             text-base
             bg-gray-800
             border-transparent
-            rounded-md
+            rounded-full
+            placeholder-gray-400
+            transition-all duration-200
             focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
         `}
         {...props}
