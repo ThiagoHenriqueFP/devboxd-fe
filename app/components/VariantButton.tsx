@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
 export const variantButton = tv({
-    base: 'font-semibold text-white text-sm py-1 px-4 rounded-full active:opacity-80',
+    base: 'font-semibold text-white text-sm py-1 px-4 rounded-full active:opacity-80 transition-colors duration-200',
     
     variants: {
         variant: {
