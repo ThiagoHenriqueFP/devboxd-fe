@@ -36,6 +36,8 @@ export default function Signin() {
         username: data.username,
         password: data.password,
       });
+
+      router.push("/");
     } catch (e) {
       console.error(e);
     }
@@ -57,7 +59,11 @@ export default function Signin() {
           <span>{errors.password?.message}</span>
         </div>
       </div>
-      <Button className="mt-4" onClick={handleSubmit(handleSignin)}>
+      <Button
+        className="mt-4"
+        onClick={handleSubmit(handleSignin)}
+        variant="primary"
+      >
         Login
       </Button>
     </form>

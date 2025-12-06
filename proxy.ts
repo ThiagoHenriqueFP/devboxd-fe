@@ -1,18 +1,33 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-
-const authPaths = ["/signin", "/signup"];
-
 export function proxy(request: NextRequest) {
-  const isAuthenticated = request.cookies.get("access_token");
+  const token = request.cookies.get("access_token")?.value;
+  const { pathname } = request.nextUrl;
 
-  const path = request.nextUrl.pathname;
-  const isPathEmpty = path === "/";
-  const isAuthPath = authPaths.some((route) => path.startsWith(route));
+  const isAuthRoute = pathname.startsWith("/auth");
 
-  if (!isAuthenticated) {
-    return NextResponse.redirect(new URL("/signin", request.url));
-  } else if (isPathEmpty || isAuthPath) {
+  const isProtectedRoute = !isAuthRoute;
+
+  if (!token && isProtectedRoute) {
+    return NextResponse.redirect(new URL("/auth/signin", request.url));
+  }
+
+  if (token && isAuthRoute) {
     return NextResponse.redirect(new URL("/", request.url));
   }
+
+  return NextResponse.next();
 }
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+     */
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
+};
