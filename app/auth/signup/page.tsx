@@ -82,7 +82,11 @@ export default function Signin() {
           <span>{errors.confirmPassword?.message}</span>
         </div>
       </div>
-      <Button className="mt-4" onClick={handleSubmit(handleSignup)}>
+      <Button
+        className="mt-4"
+        onClick={handleSubmit(handleSignup)}
+        variant="primary"
+      >
         Register
       </Button>
     </form>
