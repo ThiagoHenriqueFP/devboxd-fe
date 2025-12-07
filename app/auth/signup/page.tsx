@@ -55,40 +55,52 @@ export default function Signin() {
   }
 
   return (
-    <form className="flex flex-col items-center">
-      <div className="*:m-4">
-        <div>
-          <Input type="text" placeholder="Username" {...register("username")} />
-          <span>{errors.username?.message}</span>
-        </div>
-        <div>
-          <Input type="text" placeholder="Email" {...register("email")} />
-          <span>{errors.email?.message}</span>
-        </div>
-        <div>
-          <Input
-            type="password"
-            placeholder="Password"
-            {...register("password")}
-          />
-          <span>{errors.password?.message}</span>
-        </div>
-        <div>
-          <Input
-            type="password"
-            placeholder="Confirm Password"
-            {...register("confirmPassword")}
-          />
-          <span>{errors.confirmPassword?.message}</span>
-        </div>
+    <div>
+      <div className="mb-8 flex flex-col items-center gap-4">
+        <h1 className="text-3xl font-bold">DevBoxd</h1>
+        <span className="font-semibold">
+          Interaja com os projetos de outros devs
+        </span>
       </div>
-      <Button
-        className="mt-4"
-        onClick={handleSubmit(handleSignup)}
-        variant="primary"
-      >
-        Register
-      </Button>
-    </form>
+      <form className="flex flex-col items-center">
+        <div className="*:m-4">
+          <div>
+            <Input
+              type="text"
+              placeholder="Username"
+              {...register("username")}
+            />
+            <span>{errors.username?.message}</span>
+          </div>
+          <div>
+            <Input type="text" placeholder="Email" {...register("email")} />
+            <span>{errors.email?.message}</span>
+          </div>
+          <div>
+            <Input
+              type="password"
+              placeholder="Password"
+              {...register("password")}
+            />
+            <span>{errors.password?.message}</span>
+          </div>
+          <div>
+            <Input
+              type="password"
+              placeholder="Confirm Password"
+              {...register("confirmPassword")}
+            />
+            <span>{errors.confirmPassword?.message}</span>
+          </div>
+        </div>
+        <Button
+          className="mt-4"
+          onClick={handleSubmit(handleSignup)}
+          variant="primary"
+        >
+          Register
+        </Button>
+      </form>
+    </div>
   );
 }
