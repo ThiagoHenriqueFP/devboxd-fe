@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { de } from "zod/locales";
 import Header from "./components/Header";
+import ProfileHeader from "./components/ProfileHeader";
 
 const inter = Inter({ subsets: ["latin"] });
 
