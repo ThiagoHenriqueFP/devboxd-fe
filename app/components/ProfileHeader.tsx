@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { Button } from "@/app/components/VariantButton";
 
+const PROFILE_PIC_URL = "/profile-picture.jpg";
+const USERNAME = useUserContext;
+
+
 export default function ProfileHeader() {
     return (
         <div className="w-full bg-neutral-700 text-white pt-6 pb-4 px-6 border-neutral-800">
