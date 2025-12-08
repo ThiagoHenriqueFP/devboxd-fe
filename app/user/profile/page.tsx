@@ -72,6 +72,13 @@ export default function UserProfilePage() {
                     </div>
                     {/* Linha Divisoria */}
                     <div className="w-full h-[2px] bg-white opacity-50 mt-2"></div>
+
+                    {/* Container de posts recentes */}
+                    <div className="flex flex-col gap-4 mt-4">
+                        {/* Post 1 */}
+
+                    </div>
+                    
                 </div>
 
             </div>
