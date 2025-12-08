@@ -18,7 +18,7 @@ export default function AuthLayout({
         <Image src={logo} alt="Auth Image" className="max-w-full h-auto" />
       </aside>
       <main className="flex bg-neutral-800 min-h-screen flex-col justify-start lg:justify-center items-center col-span-2 lg:col-span-1">
-        <ContextWrapper>{children}</ContextWrapper>
+        <ContextWrapper user={null}>{children}</ContextWrapper>
       </main>
     </div>
   );
