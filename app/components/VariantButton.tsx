@@ -6,8 +6,8 @@ export const variantButton = tv({
     
     variants: {
         variant: {
-            primary: 'bg-gray-600 hover:bg-blue-700 text-white text-xs py-2 px-4 rounded-full ',
-            secondary: 'bg-blue-600 hover:bg-gray-700 text-white text-xs py-2 px-4 rounded-full ',
+            primary: "bg-indigo-700 hover:bg-indigo-700/70 text-white text-xs py-2 px-4 rounded-full ",
+            secondary:"bg-gray-600 bg-indigo-700 text-white text-xs py-2 px-4 rounded-full ",
             terciary: 'bg-red-600 hover:bg-gray-700 text-white text-xs py-2 px-4 rounded-full ',
             quarternary: 'bg-purple-600 hover:bg-gray-700 text-white text-xs py-2 px-4 rounded-full ',
             quinternary: 'bg-none hover:bg-gray-700 text-white text-xs py-2 px-4 rounded-full ',

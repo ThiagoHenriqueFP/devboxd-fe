@@ -1,14 +1,15 @@
 import Image from "next/image";
 import { Button } from "@/app/components/VariantButton";
+import { useUserContext } from "@/context/contexts/UserContext";
 
 export default function ProfileHeader() {
-    /*const context = useUserContext()*/
+    const context = useUserContext()
+    const USERNAME = context.user?.username || "João Banana" ;
     const PROFILE_PIC_URL = "/profile-picture.jpg";
-    const USERNAME = /*context.username ||*/ "João Banana" ;
-    const USER_BIO = "User bio user bio";
+    const USER_BIO =  "User bio user bio";
     const POSTS_COUNT = 33;
     const FOLLOWERS_COUNT = 120;
-    const FOLLOWING_COUNT = 150;
+    const FOLLOWING_COUNT =  150;
 
     return (
         <div className="w-full bg-neutral-700 text-white pt-6 pb-4 px-6 border-neutral-800">
