@@ -1,6 +1,7 @@
 "use client";
 import { Input } from "@/app/components/Input";
 import { Button } from "@/app/components/VariantButton";
+import { toastMessage } from "@/lib/toast";
 import { SignupService } from "@/service/auth/signup";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -50,7 +51,7 @@ export default function Signin() {
 
       setInterval(() => router.push("/auth/signin"), 500);
     } catch (e) {
-      console.error(e);
+      toastMessage({ message: "Error during signup", type: "error" });
     }
   }
 
@@ -70,11 +71,15 @@ export default function Signin() {
               placeholder="Username"
               {...register("username")}
             />
-            <span>{errors.username?.message}</span>
+            <span className="text-sm block min-h-5">
+              {errors.username?.message}
+            </span>
           </div>
           <div>
             <Input type="text" placeholder="Email" {...register("email")} />
-            <span>{errors.email?.message}</span>
+            <span className="text-sm block min-h-5">
+              {errors.email?.message}
+            </span>
           </div>
           <div>
             <Input
@@ -82,7 +87,10 @@ export default function Signin() {
               placeholder="Password"
               {...register("password")}
             />
-            <span>{errors.password?.message}</span>
+
+            <span className="text-sm block min-h-5">
+              {errors.password?.message}
+            </span>
           </div>
           <div>
             <Input
@@ -90,7 +98,9 @@ export default function Signin() {
               placeholder="Confirm Password"
               {...register("confirmPassword")}
             />
-            <span>{errors.confirmPassword?.message}</span>
+            <span className="text-sm block min-h-5">
+              {errors.confirmPassword?.message}
+            </span>
           </div>
         </div>
         <Button

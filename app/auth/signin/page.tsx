@@ -1,6 +1,8 @@
 "use client";
 import { Input } from "@/app/components/Input";
 import { Button } from "@/app/components/VariantButton";
+import { useUserContext } from "@/context/contexts/UserContext";
+import { toastMessage } from "@/lib/toast";
 import { SigninService } from "@/service/auth/signin";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -8,6 +10,7 @@ import { useForm } from "react-hook-form";
 import z from "zod";
 
 export default function Signin() {
+  const { login } = useUserContext();
   const router = useRouter();
   const SigninSchema = z.object({
     username: z
@@ -32,14 +35,20 @@ export default function Signin() {
 
   async function handleSignin(data: signinSchema) {
     try {
-      await SigninService.instance.perform({
+      const user = await SigninService.instance.perform({
         username: data.username,
         password: data.password,
       });
 
+      login(user);
+
       router.push("/");
     } catch (e) {
-      console.error(e);
+      if (e instanceof Error)
+        toastMessage({
+          message: e.message,
+          type: "error",
+        });
     }
   }
 
@@ -51,9 +60,8 @@ export default function Signin() {
           Interaja com os projetos de outros devs
         </span>
       </div>
-
       <form className="flex flex-col items-center">
-        <div className="*:m-4">
+        <div className="*:mt-3">
           <div>
             <Input
               className="bg-neutral-700"
@@ -61,7 +69,9 @@ export default function Signin() {
               placeholder="Username"
               {...register("username")}
             />
-            <span>{errors.username?.message}</span>
+            <span className="text-sm block min-h-5">
+              {errors.username?.message}
+            </span>
           </div>
           <div>
             <Input
@@ -70,7 +80,9 @@ export default function Signin() {
               placeholder="Password"
               {...register("password")}
             />
-            <span>{errors.password?.message}</span>
+            <span className="text-sm block min-h-5">
+              {errors.password?.message}
+            </span>
           </div>
         </div>
         <Button
