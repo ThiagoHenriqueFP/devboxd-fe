@@ -16,6 +16,7 @@ export const variantButton = tv({
             ghost: 'bg-transparent text-white hover:bg-white hover:text-black',
         },
     },
+  },
 });
 
 export interface ButtonProps
